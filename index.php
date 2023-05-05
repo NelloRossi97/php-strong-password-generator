@@ -2,13 +2,13 @@
 include './partials/template/head.php';
 include './partials/template/foot.php';
 
-$length = $_GET['numb'];
+$length = 0;
 function generatePassword($length){
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $length = $_GET['numb'];
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#!"£$%&/()=?^*°§';
     $password = substr(str_shuffle($chars), 0, $length);
     return $password;
 }
-$password = generatePassword($length);
 ?>
 
 <!-- Descrizione
