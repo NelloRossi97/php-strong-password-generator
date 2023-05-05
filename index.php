@@ -2,13 +2,22 @@
 include './partials/template/head.php';
 include './partials/template/foot.php';
 
-$length = 0;
-function generatePassword($length){
+if (!empty($_GET['numb'])) {
     $length = $_GET['numb'];
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#!"£$%&/()=?^*°§';
-    $password = substr(str_shuffle($chars), 0, $length);
+}else{
+    $length = 0;
+}
+function generatePassword($length){
+    if($length == 0){
+        $password = null;
+    }else{
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#!"$%&/()=?^';
+        $password = substr(str_shuffle($chars), 0, $length);
+    }
+    
     return $password;
 }
+$password = generatePassword($length);
 ?>
 
 <!-- Descrizione
@@ -35,5 +44,10 @@ Invece di visualizzare la password nella index, effettuare un redirect ad una pa
                 </div>
             </div>
         </form>
+        <div class="result">
+            <h3>La password generata è: <?php if($password != 0){
+                echo $password;
+            } ?></h3>
+        </div>
     </div>
 </main>
