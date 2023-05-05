@@ -1,5 +1,15 @@
-<?php include './partials/template/head.php' ?>
-<?php include './partials/template/foot.php' ?>
+<?php
+include './partials/template/head.php';
+include './partials/template/foot.php';
+
+$length = $_GET['numb'];
+function generatePassword($length){
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $password = substr(str_shuffle($chars), 0, $length);
+    return $password;
+}
+$password = generatePassword($length);
+?>
 
 <!-- Descrizione
 Dobbiamo creare una pagina che permetta ai nostri utenti di utilizzare il nostro generatore di password (abbastanza) sicure.
@@ -18,9 +28,11 @@ Invece di visualizzare la password nella index, effettuare un redirect ad una pa
         <form action="<?php $_SERVER['PHP_SELF']?>" method="GET">
             <div class="form-group">
                 <h1>Crea la tua password sicurissima!</h1>
-                <label for="howMany">Da quanti caratteri vuoi che sia composta?</label>
-                <input type="number"
-                    class="form-control" name="howMany" id="howMany" placeholder="Inserisci un numero">
+                <label for="num">Da quanti caratteri vuoi che sia composta?</label>
+                <div class="d-flex">
+                    <input type="number" class="form-control" name="numb" id="numb" placeholder="Inserisci un numero">
+                    <input class="btn btn-primary" type="submit" value="Invia">
+                </div>
             </div>
         </form>
     </div>
