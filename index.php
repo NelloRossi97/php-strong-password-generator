@@ -33,7 +33,7 @@ Invece di visualizzare la password nella index, effettuare un redirect ad una pa
 
 
 <main class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="pass-container">
+    <div class="pass-container" id="app">
         <form action="<?php $_SERVER['PHP_SELF']?>" method="GET">
             <div class="form-group">
                 <h1>Crea la tua password sicurissima!</h1>
@@ -44,10 +44,12 @@ Invece di visualizzare la password nella index, effettuare un redirect ad una pa
                 </div>
             </div>
         </form>
-        <div class="result">
-            <h3>La password generata è: <?php if($password != 0){
-                echo $password;
-            } ?></h3>
-        </div>
+        <?php if ($password != 0){
+            echo '<div class="result mt-5">
+                    <h3>La password generata è: '. $password .'</h3>
+                    </div>';
+        }
+       
+        ?>
     </div>
 </main>
